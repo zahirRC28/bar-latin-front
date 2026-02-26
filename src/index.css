@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap');
+
+:root {
+  --bg-dark: #0f0b1c;
+  --bg-section: #151026;
+  --primary: #a855f7;       /* lila */
+  --primary-soft: #c084fc;
+  --accent: #22c55e;        /* verde */
+  --text-light: #f3f4f6;
+  --text-muted: #a1a1aa;
+  --font-main: 'Poppins', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-main);
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Animaciones de carga y aparición */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes neonGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.5),
+                 0 0 20px rgba(168, 85, 247, 0.3),
+                 0 0 30px rgba(34, 197, 94, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(168, 85, 247, 0.8),
+                 0 0 30px rgba(168, 85, 247, 0.6),
+                 0 0 45px rgba(34, 197, 94, 0.4),
+                 0 0 60px rgba(0, 150, 255, 0.2);
+  }
+}
+
+/* Clases de animación */
+.animate-fade-in-down {
+  animation: fadeInDown 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.8s ease-out forwards;
+}
+
+/* Delays para efecto cascada */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+.delay-7 { animation-delay: 0.7s; }
+.delay-8 { animation-delay: 0.8s; }
+
+/* Trigger para scroll animations - el resto de estilos están en cada componente */
+section {
+  will-change: opacity;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,313 @@
+:root{
+  --bg:#0f1724;
+  --card:#111827;
+  --card-2:#0b1220;
+  --muted:#94a3b8;
+  --accent:#ff6b6b;
+  --accent-2:#ff9f43;
+  --border:rgba(255,255,255,0.08);
+}
+
+/* =========================
+   BASE (Mobile First)
+========================= */
+
+body{
+  margin:0;
+  background: radial-gradient(circle at top, #0b162c 0%, #0f1724 60%);
+  color:#e6eef6;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+}
+
+/* =========================
+   PANEL
+========================= */
+
+.admin-panel{
+  width:100%;
+  padding:20px 16px;
+  box-sizing:border-box;
+  background:var(--card);
+  min-height:100vh;
+}
+
+.admin-panel h2{
+  text-align:center;
+  margin-bottom:30px;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+.admin-panel h3{
+  margin:20px 0 15px;
+  font-size:18px;
+  font-weight:600;
+  color:var(--accent-2);
+}
+
+.admin-panel h4{
+  margin:15px 0 10px;
+  font-size:15px;
+  color:#fff;
+}
+
+/* =========================
+   FORMULARIOS
+========================= */
+
+.admin-panel form{
+  background:var(--card-2);
+  padding:18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  margin-bottom:25px;
+}
+
+.admin-panel label{
+  display:block;
+  font-size:12px;
+  margin-bottom:6px;
+  color:var(--muted);
+}
+
+.admin-panel input,
+.admin-panel textarea,
+.admin-panel select{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#0c1424;
+  color:#e6eef6;
+  font-size:14px;
+  outline:none;
+  transition:all .25s ease;
+}
+
+.admin-panel textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.admin-panel input:focus,
+.admin-panel textarea:focus,
+.admin-panel select:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 2px rgba(255,107,107,0.2);
+}
+
+/* =========================
+   FILE INPUT MODERNO
+========================= */
+
+.admin-panel input[type="file"]{
+  padding:14px;
+  border:1px dashed var(--border);
+  cursor:pointer;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.admin-panel input[type="file"]:hover{
+  border-color:var(--accent);
+  background:rgba(255,107,107,0.05);
+}
+
+.admin-panel input[type="file"]::file-selector-button{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  border:none;
+  padding:8px 14px;
+  border-radius:8px;
+  margin-right:10px;
+  color:#0f1724;
+  font-weight:600;
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.admin-panel input[type="file"]::file-selector-button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 15px rgba(255,107,107,0.35);
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.admin-panel button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:12px;
+  border:none;
+  font-weight:600;
+  font-size:14px;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+.admin-panel button[type="submit"]{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#0f1724;
+}
+
+.admin-panel button[type="submit"]:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(255,107,107,0.35);
+}
+
+.admin-panel .secondary{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--muted);
+}
+
+.admin-panel .secondary:hover{
+  background:rgba(255,255,255,0.05);
+  color:#fff;
+}
+
+.admin-panel button[disabled]{
+  opacity:.6;
+  cursor:default;
+}
+
+/* =========================
+   LISTAS
+========================= */
+
+.admin-panel ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.admin-panel li{
+  background:var(--card-2);
+  border:1px solid var(--border);
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:10px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  transition:.2s ease;
+}
+
+.admin-panel li:hover{
+  background:#111c32;
+}
+
+.admin-panel li strong{
+  font-weight:600;
+}
+
+/* Botones dentro de listas */
+.admin-panel li span:last-child{
+  display:flex;
+  gap:8px;
+}
+
+.admin-panel li span:last-child button{
+  flex:1;
+}
+
+/* =========================
+   CATEGORÍAS
+========================= */
+
+.category-suggestions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+
+.suggestion-btn{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 12px;
+  border-radius:30px;
+  background:#0c1424;
+  border:1px solid var(--border);
+  color:var(--muted);
+  cursor:pointer;
+  transition:.2s ease;
+  font-size:13px;
+}
+
+.suggestion-btn:hover{
+  background:rgba(255,255,255,0.05);
+  color:#fff;
+}
+
+.suggestion-btn.active{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#0f1724;
+  border:none;
+}
+
+.suggestion-btn.disabled{
+  opacity:.4;
+  cursor:default;
+}
+
+/* =========================
+   ESTADOS VACÍOS
+========================= */
+
+.admin-panel .no-items,
+.admin-panel .no-events{
+  padding:25px;
+  text-align:center;
+  border-radius:14px;
+  background:var(--card-2);
+  border:1px dashed var(--border);
+  color:var(--muted);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (min-width:640px){
+
+  .admin-panel{
+    max-width:750px;
+    margin:30px auto;
+    border-radius:20px;
+    padding:30px;
+  }
+
+  .admin-panel button{
+    width:auto;
+  }
+
+  .admin-panel li{
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  .admin-panel li span:last-child{
+    width:auto;
+  }
+
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width:1024px){
+
+  .admin-panel{
+    max-width:1100px;
+  }
+
+  .admin-panel form{
+    padding:24px;
+  }
+
+}

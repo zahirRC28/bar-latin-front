@@ -1,0 +1,213 @@
+.encuentranos-section {
+  padding: 100px 10%;
+  background: linear-gradient(180deg, #0a0615 0%, #0d0a1a 50%, #0b0814 100%);
+  color: var(--text-light);
+  position: relative;
+  opacity: 1;
+  transition: background 0.3s ease;
+}
+
+.encuentranos-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.encuentranos-header h2 {
+  font-size: 3rem;
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  opacity: 0;
+}
+
+.encuentranos-section.scroll-visible .encuentranos-header h2 {
+  animation: fadeInDown 0.8s ease-out 0.2s forwards, neonGlow 3s ease-in-out 1.0s infinite !important;
+  opacity: 1 !important;
+}
+
+.encuentranos-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  font-family: var(--font-main);
+}
+
+.encuentranos-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.encuentranos-info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.info-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.info-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(168, 85, 247, 0.2);
+  border-radius: 50%;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.info-text h3 {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin: 0 0 5px 0;
+}
+
+.info-text p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(168, 85, 247, 0.2);
+  border-radius: 50%;
+  color: var(--primary);
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+.encuentranos-map {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+}
+
+.encuentranos-map iframe {
+  border-radius: 20px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .encuentranos-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .encuentranos-section {
+    padding: 80px 8%;
+  }
+
+  .encuentranos-header h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .encuentranos-header h2 {
+    font-size: 2rem;
+  }
+
+  .encuentranos-section {
+    padding: 60px 5%;
+  }
+
+  .encuentranos-header p {
+    font-size: 1rem;
+  }
+
+  .encuentranos-container {
+    gap: 30px;
+  }
+
+  .info-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .info-text h3 {
+    font-size: 1.1rem;
+  }
+
+  .info-text p {
+    font-size: 0.9rem;
+  }
+
+  .encuentranos-map {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .encuentranos-section {
+    padding: 40px 3%;
+  }
+
+  .encuentranos-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .encuentranos-header p {
+    font-size: 0.9rem;
+  }
+
+  .encuentranos-container {
+    gap: 20px;
+  }
+
+  .encuentranos-info {
+    gap: 15px;
+  }
+
+  .info-item {
+    gap: 15px;
+  }
+
+  .info-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 0.8rem;
+  }
+
+  .info-text h3 {
+    font-size: 1rem;
+  }
+
+  .info-text p {
+    font-size: 0.85rem;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .encuentranos-map {
+    height: 250px;
+  }
+}

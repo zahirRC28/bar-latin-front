@@ -1,0 +1,11 @@
+div.principal {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+div.principal::-webkit-scrollbar {
+  display: none;
+}

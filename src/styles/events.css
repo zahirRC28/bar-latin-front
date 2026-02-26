@@ -1,0 +1,481 @@
+.events-section {
+  padding: 100px 10%;
+  background: linear-gradient(180deg, #0a0615 0%, #0d0a1a 50%, #0b0814 100%);
+  color: var(--text-light);
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.events-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.events-header h2 {
+  font-size: 3rem;
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  opacity: 0;
+}
+
+.events-section.scroll-visible .events-header h2 {
+  animation: fadeInDown 0.8s ease-out 0.2s forwards, neonGlow 3s ease-in-out 1.0s infinite !important;
+  opacity: 1 !important;
+}
+
+.events-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  font-family: var(--font-main);
+}
+
+.events-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+  perspective: 1000px;
+}
+
+.events-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  transition: all 0.3s ease-out;
+}
+
+@media (max-width: 768px) {
+  .events-container {
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 100%;
+    gap: 0;
+  }
+}
+
+.events-container.animating {
+  animation: slideCarousel 0.3s ease-out;
+}
+
+@keyframes slideCarousel {
+  0% {
+    opacity: 0.7;
+    transform: translateX(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.carousel-btn {
+  background: var(--primary);
+  border: none;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+  opacity: 0;
+}
+
+.events-section.scroll-visible .carousel-btn {
+  animation: fadeIn 0.8s ease-out 0.3s forwards !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 768px) {
+  .carousel-btn {
+    display: none !important;
+  }
+}
+
+.carousel-btn:hover {
+  background: var(--accent);
+  transform: scale(1.1);
+}
+
+.carousel-btn:active {
+  transform: scale(0.95);
+}
+
+.event-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+  height: 380px;
+  width: 280px;
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.events-section.scroll-visible .event-card {
+  animation: scaleIn 0.6s ease-out forwards !important;
+  opacity: 1 !important;
+  transform: scale(1);
+}
+
+.event-card:nth-child(1) { animation-delay: 0.3s; }
+.event-card:nth-child(2) { animation-delay: 0.4s; }
+.event-card:nth-child(3) { animation-delay: 0.5s; }
+
+.event-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(168, 85, 247, 0.3);
+}
+
+.event-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.event-card:hover .event-image img {
+  transform: scale(1.1);
+}
+
+.event-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  transition: all 0.3s;
+}
+
+.event-card:hover .event-overlay {
+  background: rgba(168, 85, 247, 0.5);
+}
+
+.event-click-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(34, 197, 94, 0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.event-card:hover .event-click-hint {
+  opacity: 1;
+}
+
+.event-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.event-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  font-family: var(--font-main);
+}
+
+.event-info h3 {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin: 0;
+  font-family: var(--font-main);
+  font-weight: 600;
+}
+
+/* Modal para imagen completa */
+.event-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+  padding: 20px;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: scaleIn 0.4s ease-out;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: var(--primary);
+  border: none;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 1001;
+}
+
+.modal-close:hover {
+  background: var(--accent);
+  transform: scale(1.1);
+}
+
+.modal-close:active {
+  transform: scale(0.95);
+}
+
+.modal-info {
+  text-align: center;
+  color: var(--text-light);
+  max-width: 600px;
+}
+
+.modal-info h2 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+}
+
+.modal-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+
+.indicator.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  width: 30px;
+  border-radius: 6px;
+}
+
+.indicator:hover {
+  background: var(--accent);
+}
+
+@media (max-width: 1024px) {
+  .events-carousel {
+    gap: 20px;
+  }
+
+  .events-container {
+    gap: 15px;
+  }
+
+  .events-section {
+    padding: 80px 8%;
+  }
+
+  .event-card {
+    height: 340px;
+    width: 240px;
+  }
+
+  .carousel-btn {
+    width: 45px;
+    height: 45px;
+  }
+
+  .events-header h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .events-carousel {
+    flex-direction: row;
+    gap: 0;
+    width: 100%;
+  }
+
+  .events-container {
+    gap: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .events-section {
+    padding: 60px 5%;
+  }
+
+  .events-header h2 {
+    font-size: 2rem;
+  }
+
+  .events-header p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .event-card {
+    height: 320px;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+  }
+
+  .carousel-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .modal-close {
+    top: -40px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .modal-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .event-info {
+    padding: 20px 15px;
+  }
+
+  .event-date {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+
+  .event-info h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .events-section {
+    padding: 40px 3%;
+  }
+
+  .events-carousel {
+    gap: 0;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .events-container {
+    gap: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .events-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .events-header p {
+    font-size: 0.9rem;
+  }
+
+  .event-card {
+    height: 280px;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .event-info {
+    padding: 15px 10px;
+  }
+
+  .event-date {
+    font-size: 0.8rem;
+  }
+
+  .event-info h3 {
+    font-size: 1rem;
+  }
+
+  .modal-content img {
+    max-height: 50vh;
+  }
+
+  .modal-info h2 {
+    font-size: 1.2rem;
+  }
+}
+
