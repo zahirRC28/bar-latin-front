@@ -6,7 +6,7 @@ export const Hero = () => {
     <section className="hero">
       <div className="overlay">
         <img src={heroLogo} alt="Latin Disco" className="hero-logo" />
-        <h3>BAR & LOUNGE</h3>
+        <h3>BAR DE COPAS</h3>
         <p>
           Donde la noche cobra vida. Cocktails de autor, música en vivo
           y la mejor energía de la ciudad.

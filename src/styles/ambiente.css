@@ -85,9 +85,6 @@
   transition: all 0.3s;
 }
 
-.ambiente-card:hover .ambiente-overlay {
-  background: rgba(168, 85, 247, 0.6);
-}
 
 .ambiente-overlay h3 {
   /* titles removed, no text */

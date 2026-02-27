@@ -292,8 +292,8 @@ export default function AdminPanel() {
                 <input value={menuForm.price} onChange={e => setMenuForm({ ...menuForm, price: e.target.value })} />
               </div>
               <div>
-                <label>Imagen (opcional)</label>
-                <input type="file" accept="image/*" onChange={e => setMenuForm({ ...menuForm, imageFile: e.target.files[0] })} />
+                <label>Imagen/Video (opcional)</label>
+                <input type="file" accept="image/*,video/*" onChange={e => setMenuForm({ ...menuForm, imageFile: e.target.files[0] })} />
               </div>
               <button type="submit" disabled={menuLoading}>Crear Item</button>
             </form>
@@ -399,16 +399,12 @@ export default function AdminPanel() {
                 <input required value={eventForm.title} onChange={e => setEventForm({ ...eventForm, title: e.target.value })} />
               </div>
               <div>
-                <label>Descripción</label>
-                <textarea value={eventForm.description} onChange={e => setEventForm({ ...eventForm, description: e.target.value })} />
-              </div>
-              <div>
                 <label>Fecha</label>
                 <input type="date" value={eventForm.date} onChange={e => setEventForm({ ...eventForm, date: e.target.value })} />
               </div>
               <div>
-                <label>Imagen (obligatoria)</label>
-                <input type="file" accept="image/*" onChange={e => setEventForm({ ...eventForm, imageFile: e.target.files[0] })} />
+                <label>Imagen/Video (obligatoria)</label>
+                <input type="file" accept="image/*,video/*" onChange={e => setEventForm({ ...eventForm, imageFile: e.target.files[0] })} />
               </div>
               <button type="submit" disabled={eventLoading}>Crear Evento</button>
             </form>
@@ -455,8 +451,8 @@ export default function AdminPanel() {
                   </select>
                 </div>
                 <div>
-                  <label>Actualizar imagen (opcional)</label>
-                  <input type="file" accept="image/*" onChange={e => setEditingMenu({ ...editingMenu, imageFile: e.target.files[0] })} />
+                  <label>Actualizar imagen/Video (opcional)</label>
+                  <input type="file" accept="image/*,video/*" onChange={e => setEditingMenu({ ...editingMenu, imageFile: e.target.files[0] })} />
                 </div>
                 <button type="submit">Guardar</button>
                 <button type="button" onClick={() => setEditingMenu(null)} style={{ marginLeft: 8 }}>Cancelar</button>
@@ -473,16 +469,12 @@ export default function AdminPanel() {
                   <input value={editingEvent.title || ''} onChange={e => setEditingEvent({ ...editingEvent, title: e.target.value })} />
                 </div>
                 <div>
-                  <label>Descripción</label>
-                  <textarea value={editingEvent.description || ''} onChange={e => setEditingEvent({ ...editingEvent, description: e.target.value })} />
-                </div>
-                <div>
                   <label>Fecha</label>
                   <input type="date" value={editingEvent.date || ''} onChange={e => setEditingEvent({ ...editingEvent, date: e.target.value })} />
                 </div>
                 <div>
-                  <label>Actualizar imagen (obligatorio si reemplazas)</label>
-                  <input type="file" accept="image/*" onChange={e => setEditingEvent({ ...editingEvent, imageFile: e.target.files[0] })} />
+                  <label>Actualizar imagen/Video (obligatorio si reemplazas)</label>
+                  <input type="file" accept="image/*,video/*" onChange={e => setEditingEvent({ ...editingEvent, imageFile: e.target.files[0] })} />
                 </div>
                 <button type="submit">Guardar</button>
                 <button type="button" onClick={() => setEditingEvent(null)} style={{ marginLeft: 8 }}>Cancelar</button>

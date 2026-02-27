@@ -1,8 +1,32 @@
 import { useState, useEffect, useRef } from "react";
 import "../styles/events.css";
-import { Calendar, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight, X, Play } from "lucide-react";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import useEvents from "../hooks/useEvents";
+
+// Helper para detectar si es un video
+function isVideoFile(url) {
+  if (!url) return false;
+  const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv', '.flv', '.wmv'];
+  return videoExtensions.some(ext => url.toLowerCase().includes(ext));
+}
+
+// Helper para obtener MIME type de video
+function getVideoMimeType(url) {
+  if (!url) return 'video/mp4';
+  const ext = url.split('.').pop()?.toLowerCase();
+  const mimeTypes = {
+    'mp4': 'video/mp4',
+    'webm': 'video/webm',
+    'ogg': 'video/ogg',
+    'mov': 'video/quicktime',
+    'avi': 'video/x-msvideo',
+    'mkv': 'video/x-matroska',
+    'flv': 'video/x-flv',
+    'wmv': 'video/x-ms-wmv'
+  };
+  return mimeTypes[ext] || 'video/mp4';
+}
 
 export const EventsSection = () => {
   const ref = useIntersectionObserver({ threshold: 0.1 });
@@ -129,26 +153,44 @@ export const EventsSection = () => {
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
               >
-                {visibleEvents.map((event, idx) => (
-                  <div 
-                    key={idx} 
-                    className="event-card"
-                    onClick={() => handleEventClick(event)}
-                  >
-                    <div className="event-image">
-                      <img src={event.mediaUrl || event.image || ''} alt={event.title} />
-                      <div className="event-overlay"></div>
-                      <div className="event-click-hint">Ver imagen</div>
-                    </div>
-                    <div className="event-info">
-                      <div className="event-date">
-                        <Calendar size={18} />
-                        <span>{new Date(event.date).toLocaleDateString()}</span>
+                {visibleEvents.map((event, idx) => {
+                  const mediaUrl = event.mediaUrl || event.image || '';
+                  const isVideo = isVideoFile(mediaUrl);
+                  
+                  return (
+                    <div 
+                      key={idx} 
+                      className="event-card"
+                      onClick={() => handleEventClick(event)}
+                    >
+                      <div className="event-image">
+                        {isVideo ? (
+                          <>
+                            <video 
+                              src={mediaUrl} 
+                              alt={event.title}
+                              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            />
+                            <div className="video-play-icon">
+                              <Play size={48} fill="white" color="white" />
+                            </div>
+                          </>
+                        ) : (
+                          <img src={mediaUrl} alt={event.title} />
+                        )}
+                        <div className="event-overlay"></div>
+                        <div className="event-click-hint">{isVideo ? 'Ver video' : 'Ver imagen'}</div>
                       </div>
-                      <h3>{event.title}</h3>
+                      <div className="event-info">
+                        <div className="event-date">
+                          <Calendar size={18} />
+                          <span>{new Date(event.date).toLocaleDateString()}</span>
+                        </div>
+                        <h3>{event.title}</h3>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               {sortedEvents.length > (isMobile ? 1 : 3) && (
@@ -172,24 +214,38 @@ export const EventsSection = () => {
         )}
       </section>
 
-      {/* Modal para ver imagen completa */}
-      {selectedEvent && (
-        <div className="event-modal" onClick={handleCloseModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={handleCloseModal}>
-              <X size={32} />
-            </button>
-            <img src={selectedEvent.mediaUrl || selectedEvent.image || ''} alt={selectedEvent.title} />
-            <div className="modal-info">
-              <h2>{selectedEvent.title}</h2>
-              <div className="modal-date">
-                <Calendar size={20} />
-                <span>{new Date(selectedEvent.date).toLocaleDateString()}</span>
+      {/* Modal para ver imagen/video completo */}
+      {selectedEvent && (() => {
+        const mediaUrl = selectedEvent.mediaUrl || selectedEvent.image || '';
+        const isVideo = isVideoFile(mediaUrl);
+        
+        return (
+          <div className="event-modal" onClick={handleCloseModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <button className="modal-close" onClick={handleCloseModal}>
+                <X size={32} />
+              </button>
+              {isVideo ? (
+                <video 
+                  src={mediaUrl} 
+                  style={{ width: '100%', maxHeight: '70vh', objectFit: 'contain' }}
+                  controls
+                  autoPlay
+                />
+              ) : (
+                <img src={mediaUrl} alt={selectedEvent.title} />
+              )}
+              <div className="modal-info">
+                <h2>{selectedEvent.title}</h2>
+                <div className="modal-date">
+                  <Calendar size={20} />
+                  <span>{new Date(selectedEvent.date).toLocaleDateString()}</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
     </>
   );
 };
